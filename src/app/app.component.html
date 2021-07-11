@@ -1,7 +1,11 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/heroes">Heroes</a>
-</nav>
-<router-outlet></router-outlet>
-<app-messages></app-messages>
+  <label>
+    Progress value
+    <input type="number" min="0" max="100"
+        [value]="progress" (input)="setProgress($event)">
+  </label>
+
+    
+  <app-progressbar [value]="progress" aria-label="Example of a progress bar">
+  </app-progressbar>
+
+
