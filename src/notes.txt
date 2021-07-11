@@ -1,0 +1,19 @@
+1. Convert to uppercase
+{{hero.name | uppercase}}
+
+2. Two-wat data-binding
+template: `
+            {{hero.name | uppercase}}
+        <input type="text" id="name" name="name" [(ngModel)]="hero.name" />
+      `,
+    })
+export class HerosComponent {
+  hero: Hero={
+    id:1,
+    name:'ddddd'
+  }
+}
+
+
+3. event binding (Select one user details from list)
+
