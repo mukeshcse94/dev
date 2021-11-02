@@ -1,0 +1,5 @@
+git repository:
+git init
+put .gitignore in root directory
+should be node_modules like this
+click 3rd icon from top in vscode and enter on search bar = share code on github, and click on check icon
