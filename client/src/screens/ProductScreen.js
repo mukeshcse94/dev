@@ -7,8 +7,11 @@ import MessageBox from '../components/MessageBox';
 import Rating from '../components/Rating';
 import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
 
+
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
+
+  //this value shuld be same in "/product/:id" as App.js value that user enter in routes
   const productId = props.match.params.id;
   const [qty, setQty] = useState(1);
   const productDetails = useSelector((state) => state.productDetails);
@@ -17,10 +20,7 @@ export default function ProductScreen(props) {
   const { userInfo } = userSignin;
 
   const productReviewCreate = useSelector((state) => state.productReviewCreate);
-  const {
-    loading: loadingReviewCreate,
-    error: errorReviewCreate,
-    success: successReviewCreate,
+  const { loading: loadingReviewCreate, error: errorReviewCreate, success: successReviewCreate,
   } = productReviewCreate;
 
   const [rating, setRating] = useState(0);
@@ -35,9 +35,16 @@ export default function ProductScreen(props) {
     }
     dispatch(detailsProduct(productId));
   }, [dispatch, productId, successReviewCreate]);
+
+  /*
+  this fn redirect user to cart screen
+  props.history.push() change root in react app
+  for this need to create Cart screen and apply root in App.js
+  */
   const addToCartHandler = () => {
     props.history.push(`/cart/${productId}?qty=${qty}`);
   };
+
   const submitHandler = (e) => {
     e.preventDefault();
     if (comment && rating) {
@@ -48,6 +55,7 @@ export default function ProductScreen(props) {
       alert('Please enter comment and rating');
     }
   };
+
   return (
     <div>
       {loading ? (
@@ -87,7 +95,7 @@ export default function ProductScreen(props) {
               <div className="card card-body">
                 <ul>
                   <li>
-                    Seller{' '}
+                    Places{' '}
                     <h2>
                       <Link to={`/seller/${product.seller._id}`}>
                         {product.seller.seller.name}
@@ -142,7 +150,7 @@ export default function ProductScreen(props) {
                           onClick={addToCartHandler}
                           className="primary block"
                         >
-                          Add to Cart
+                          Memories
                         </button>
                       </li>
                     </>

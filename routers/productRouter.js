@@ -88,6 +88,7 @@ productRouter.get(
   })
 );
 
+//this get place after '/seed',because befor seed, seed treated as id
 productRouter.get(
   '/:id',
   expressAsyncHandler(async (req, res) => {

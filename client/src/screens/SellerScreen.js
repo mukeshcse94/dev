@@ -7,23 +7,22 @@ import MessageBox from '../components/MessageBox';
 import Product from '../components/Product';
 import Rating from '../components/Rating';
 
+
 export default function SellerScreen(props) {
   const sellerId = props.match.params.id;
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
 
   const productList = useSelector((state) => state.productList);
-  const {
-    loading: loadingProducts,
-    error: errorProducts,
-    products,
-  } = productList;
+  const { loading: loadingProducts, error: errorProducts, products, } = productList;
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(detailsUser(sellerId));
     dispatch(listProducts({ seller: sellerId }));
   }, [dispatch, sellerId]);
+
   return (
     <div className="row top">
       <div className="col-1">

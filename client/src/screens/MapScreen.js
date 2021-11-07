@@ -1,14 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import {
-  LoadScript,
-  GoogleMap,
-  StandaloneSearchBox,
-  Marker,
-} from '@react-google-maps/api';
+import { LoadScript, GoogleMap, StandaloneSearchBox, Marker, } from '@react-google-maps/api';
 import LoadingBox from '../components/LoadingBox';
 import Axios from 'axios';
 import { USER_ADDRESS_MAP_CONFIRM } from '../constants/userConstants';
 import { useDispatch } from 'react-redux';
+
 
 const libs = ['places'];
 const defaultLocation = { lat: 45.516, lng: -73.56 };
@@ -17,6 +13,7 @@ export default function MapScreen(props) {
   const [googleApiKey, setGoogleApiKey] = useState('');
   const [center, setCenter] = useState(defaultLocation);
   const [location, setLocation] = useState(center);
+  const dispatch = useDispatch();
 
   const mapRef = useRef(null);
   const placeRef = useRef(null);
@@ -38,21 +35,24 @@ export default function MapScreen(props) {
   const onMarkerLoad = (marker) => {
     markerRef.current = marker;
   };
+
   const onLoadPlaces = (place) => {
     placeRef.current = place;
   };
+
   const onIdle = () => {
     setLocation({
       lat: mapRef.current.center.lat(),
       lng: mapRef.current.center.lng(),
     });
   };
+
   const onPlacesChanged = () => {
     const place = placeRef.current.getPlaces()[0].geometry.location;
     setCenter({ lat: place.lat(), lng: place.lng() });
     setLocation({ lat: place.lat(), lng: place.lng() });
   };
-  const dispatch = useDispatch();
+
   const onConfirm = () => {
     const places = placeRef.current.getPlaces();
     if (places && places.length === 1) {

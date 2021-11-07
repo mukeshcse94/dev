@@ -9,22 +9,20 @@ import { listProducts } from '../actions/productActions';
 import { listTopSellers } from '../actions/userActions';
 import { Link } from 'react-router-dom';
 
+
 export default function HomeScreen() {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products } = productList;
 
   const userTopSellersList = useSelector((state) => state.userTopSellersList);
-  const {
-    loading: loadingSellers,
-    error: errorSellers,
-    users: sellers,
-  } = userTopSellersList;
+  const { loading: loadingSellers, error: errorSellers, users: sellers, } = userTopSellersList;
 
   useEffect(() => {
     dispatch(listProducts({}));
     dispatch(listTopSellers());
   }, [dispatch]);
+
   return (
     <div>
       <h2>Top Sellers</h2>
@@ -47,6 +45,7 @@ export default function HomeScreen() {
           </Carousel>
         </>
       )}
+
       <h2>Featured Products</h2>
       {loading ? (
         <LoadingBox></LoadingBox>

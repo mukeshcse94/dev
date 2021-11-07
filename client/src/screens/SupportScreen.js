@@ -11,6 +11,7 @@ const ENDPOINT =
     ? 'http://127.0.0.1:5000'
     : window.location.host;
 
+
 export default function SupportScreen() {
   const [selectedUser, setSelectedUser] = useState({});
   const [socket, setSocket] = useState(null);
@@ -75,6 +76,7 @@ export default function SupportScreen() {
     }
   }, [messages, socket, users]);
 
+
   const selectUser = (user) => {
     allSelectedUser = user;
     setSelectedUser(allSelectedUser);
@@ -87,6 +89,7 @@ export default function SupportScreen() {
     }
     socket.emit('onUserSelected', user);
   };
+
 
   const submitHandler = (e) => {
     e.preventDefault();

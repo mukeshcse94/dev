@@ -103,6 +103,7 @@ a.brand {
   font-size: 3rem;
   font-weight: bold;
 }
+
 .badge {
   background-color: #f02020;
   color: #ffffff;
@@ -252,6 +253,8 @@ img.large {
 }
 .form > div {
   display: flex;
+  
+  /* lable show in top and i/p box in the bottom */
   flex-direction: column;
   margin: 1rem;
 }
@@ -265,7 +268,9 @@ img.large {
 }
 .dropdown-content {
   position: absolute;
-  display: none;
+  
+  /* not show by default */
+  display: none;               
   right: 0;
   min-width: 12rem;
   padding: 1rem;

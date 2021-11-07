@@ -6,6 +6,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
 
+
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
   const [name, setName] = useState('');
@@ -20,13 +21,10 @@ export default function ProductEditScreen(props) {
   const { loading, error, product } = productDetails;
 
   const productUpdate = useSelector((state) => state.productUpdate);
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = productUpdate;
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate, } = productUpdate;
 
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (successUpdate) {
       props.history.push('/productlist');
@@ -34,7 +32,8 @@ export default function ProductEditScreen(props) {
     if (!product || product._id !== productId || successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
       dispatch(detailsProduct(productId));
-    } else {
+    }
+    else {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
@@ -44,10 +43,11 @@ export default function ProductEditScreen(props) {
       setDescription(product.description);
     }
   }, [product, dispatch, productId, successUpdate, props.history]);
+
   const submitHandler = (e) => {
     e.preventDefault();
-    // TODO: dispatch update product
-    dispatch(
+
+    dispatch(                                             // TODO: dispatch update product
       updateProduct({
         _id: productId,
         name,
@@ -60,16 +60,19 @@ export default function ProductEditScreen(props) {
       })
     );
   };
+
   const [loadingUpload, setLoadingUpload] = useState(false);
   const [errorUpload, setErrorUpload] = useState('');
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
     bodyFormData.append('image', file);
     setLoadingUpload(true);
+
     try {
       const { data } = await Axios.post('/api/uploads', bodyFormData, {
         headers: {
@@ -79,7 +82,8 @@ export default function ProductEditScreen(props) {
       });
       setImage(data);
       setLoadingUpload(false);
-    } catch (error) {
+    }
+    catch (error) {
       setErrorUpload(error.message);
       setLoadingUpload(false);
     }

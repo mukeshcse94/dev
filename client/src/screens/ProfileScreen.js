@@ -5,6 +5,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_UPDATE_PROFILE_RESET } from '../constants/userConstants';
 
+
 export default function ProfileScreen() {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -19,17 +20,15 @@ export default function ProfileScreen() {
   const userDetails = useSelector((state) => state.userDetails);
   const { loading, error, user } = userDetails;
   const userUpdateProfile = useSelector((state) => state.userUpdateProfile);
-  const {
-    success: successUpdate,
-    error: errorUpdate,
-    loading: loadingUpdate,
-  } = userUpdateProfile;
+  const { success: successUpdate, error: errorUpdate, loading: loadingUpdate, } = userUpdateProfile;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (!user) {
       dispatch({ type: USER_UPDATE_PROFILE_RESET });
       dispatch(detailsUser(userInfo._id));
-    } else {
+    }
+    else {
       setName(user.name);
       setEmail(user.email);
       if (user.seller) {
@@ -39,6 +38,7 @@ export default function ProfileScreen() {
       }
     }
   }, [dispatch, userInfo._id, user]);
+
   const submitHandler = (e) => {
     e.preventDefault();
     // dispatch update profile
@@ -58,6 +58,7 @@ export default function ProfileScreen() {
       );
     }
   };
+
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>

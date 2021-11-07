@@ -11,14 +11,24 @@ const userRouter = require('./routers/userRouter.js');
 const uploadRouter = require('./routers/uploadRouter.js');
 
 const mains = require('./routers/mainRoutes');
+const Users = require('./routers/users');
+const car = require('./routers/cars')
+const classRoutes = require('./routers/populate/classRoutes');
+const studetsRoutes = require('./routers/populate/studentsRoutes');
+const searchRoutes = require('./routers/search');
+const faSpeaker = require('./routers/2fa_speaker_key');
+const sendMsg = require('./routers/sendMsg');
+const profiles = require('./routers/gallery');
 
 dotenv.config();
 
 const app = express();
+
+//parse body to http request, Add new middleware which is parsing JSON data in body of req
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-mongoose.connect(process.env.MONGODB_URL || 'mongodb://localhost/amazona', {
+mongoose.connect(process.env.MONGODB_URL, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true,
@@ -29,6 +39,14 @@ app.use('/api/products', productRouter);
 app.use('/api/orders', orderRouter);
 
 app.use('/mains', mains);
+app.use('/users', Users);
+app.use('/cars', car);
+app.use('/classRoutes', classRoutes);
+app.use('/studentsRoutes', studetsRoutes);
+app.use('/searchRoutes', searchRoutes);
+app.use('/2fa', faSpeaker);
+app.use('/sendMsg', sendMsg);
+app.use('/galleries', profiles);
 
 app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
@@ -44,6 +62,7 @@ app.get('*', (req, res) =>
   res.sendFile(path.join(__dirname, '/frontend/build/index.html'))
 );
 
+//to catch error from backend and pass to frontent
 app.use((err, req, res, next) => {
   res.status(500).send({ message: err.message });
 });

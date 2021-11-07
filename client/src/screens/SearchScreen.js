@@ -8,26 +8,17 @@ import Product from '../components/Product';
 import Rating from '../components/Rating';
 import { prices, ratings } from '../utils';
 
+
 export default function SearchScreen(props) {
-  const {
-    name = 'all',
-    category = 'all',
-    min = 0,
-    max = 0,
-    rating = 0,
-    order = 'newest',
-    pageNumber = 1,
-  } = useParams();
+  const { name = 'all', category = 'all', min = 0, max = 0, rating = 0, order = 'newest',
+    pageNumber = 1, } = useParams();
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
 
   const productCategoryList = useSelector((state) => state.productCategoryList);
-  const {
-    loading: loadingCategories,
-    error: errorCategories,
-    categories,
-  } = productCategoryList;
+  const { loading: loadingCategories, error: errorCategories, categories, } = productCategoryList;
+
   useEffect(() => {
     dispatch(
       listProducts({

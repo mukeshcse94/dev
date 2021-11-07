@@ -3,3 +3,43 @@ git init
 put .gitignore in root directory
 should be node_modules like this
 click 3rd icon from top in vscode and enter on search bar = share code on github, and click on check icon
+
+type:"module"
+json viewer
+
+useEffect accept two parameter, first is function and second is an array, array accept list 
+of dependencies.
+without parameter useEffect function run only one time after renderring component.
+
+slow n/w: Network => Slow 3G
+
+To remove duplicte entries in MongoDB use index.
+db.amazona.createIndex({"_id":1},{unique:true})
+
+Paypal:
+https://developer.paypal.com/home
+email:mukeshcs94@gmail.com
+password:paypal@123
+
+Signin:
+(POST) localhost:5000/api/users/signin
+{"email":"admin@example.com",
+    "password":"1234"}
+    
+Token:
+inside Authorization, Type = OAuth 2.0, Available Token = enter token 
+(GET) localhost:5000/api/users
+    
+    
+Populate:
+PUT: localhost:5000/class/617c7fceb6686c30308e8a43(class id)
+{
+  "studentsId":"617c3e3d2a240a0a31b6e563"(student id)
+}
+
+
+SQL                           MongoDB
+Database                      Database
+Tables                        collections
+Rows                          documents(BSON)
+Coloms                        fields

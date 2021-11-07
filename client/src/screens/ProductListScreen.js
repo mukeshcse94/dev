@@ -1,17 +1,11 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useParams } from 'react-router-dom';
-import {
-  createProduct,
-  deleteProduct,
-  listProducts,
-} from '../actions/productActions';
+import { createProduct, deleteProduct, listProducts, } from '../actions/productActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
-import {
-  PRODUCT_CREATE_RESET,
-  PRODUCT_DELETE_RESET,
-} from '../constants/productConstants';
+import { PRODUCT_CREATE_RESET, PRODUCT_DELETE_RESET, } from '../constants/productConstants';
+
 
 export default function ProductListScreen(props) {
   const { pageNumber = 1 } = useParams();
@@ -21,22 +15,15 @@ export default function ProductListScreen(props) {
   const { loading, error, products, page, pages } = productList;
 
   const productCreate = useSelector((state) => state.productCreate);
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-    product: createdProduct,
-  } = productCreate;
+  const { loading: loadingCreate, error: errorCreate, success: successCreate,
+    product: createdProduct, } = productCreate;
 
   const productDelete = useSelector((state) => state.productDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = productDelete;
+  const { loading: loadingDelete, error: errorDelete, success: successDelete, } = productDelete;
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (successCreate) {
       dispatch({ type: PRODUCT_CREATE_RESET });
@@ -48,25 +35,19 @@ export default function ProductListScreen(props) {
     dispatch(
       listProducts({ seller: sellerMode ? userInfo._id : '', pageNumber })
     );
-  }, [
-    createdProduct,
-    dispatch,
-    props.history,
-    sellerMode,
-    successCreate,
-    successDelete,
-    userInfo._id,
-    pageNumber,
-  ]);
+  }, [createdProduct, dispatch, props.history, sellerMode, successCreate, successDelete,
+    userInfo._id, pageNumber,]);
 
   const deleteHandler = (product) => {
     if (window.confirm('Are you sure to delete?')) {
       dispatch(deleteProduct(product._id));
     }
   };
+
   const createHandler = () => {
     dispatch(createProduct());
   };
+
   return (
     <div>
       <div className="row">

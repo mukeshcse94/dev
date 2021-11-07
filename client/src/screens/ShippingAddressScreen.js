@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { saveShippingAddress } from '../actions/cartActions';
 import CheckoutSteps from '../components/CheckoutSteps';
 
+
 export default function ShippingAddressScreen(props) {
   const userSignin = useSelector((state) => state.userSignin);
 
@@ -17,12 +18,14 @@ export default function ShippingAddressScreen(props) {
   if (!userInfo) {
     props.history.push('/signin');
   }
+
   const [fullName, setFullName] = useState(shippingAddress.fullName);
   const [address, setAddress] = useState(shippingAddress.address);
   const [city, setCity] = useState(shippingAddress.city);
   const [postalCode, setPostalCode] = useState(shippingAddress.postalCode);
   const [country, setCountry] = useState(shippingAddress.country);
   const dispatch = useDispatch();
+
   const submitHandler = (e) => {
     e.preventDefault();
     const newLat = addressMap ? addressMap.lat : lat;
@@ -52,6 +55,7 @@ export default function ShippingAddressScreen(props) {
       props.history.push('/payment');
     }
   };
+
   const chooseOnMap = () => {
     dispatch(
       saveShippingAddress({
@@ -66,6 +70,7 @@ export default function ShippingAddressScreen(props) {
     );
     props.history.push('/map');
   };
+
   return (
     <div>
       <CheckoutSteps step1 step2></CheckoutSteps>

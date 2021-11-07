@@ -5,16 +5,13 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_DETAILS_RESET } from '../constants/userConstants';
 
+
 export default function UserListScreen(props) {
   const userList = useSelector((state) => state.userList);
   const { loading, error, users } = userList;
 
   const userDelete = useSelector((state) => state.userDelete);
-  const {
-    loading: loadingDelete,
-    error: errorDelete,
-    success: successDelete,
-  } = userDelete;
+  const { loading: loadingDelete, error: errorDelete, success: successDelete, } = userDelete;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -23,11 +20,13 @@ export default function UserListScreen(props) {
       type: USER_DETAILS_RESET,
     });
   }, [dispatch, successDelete]);
+
   const deleteHandler = (user) => {
     if (window.confirm('Are you sure?')) {
       dispatch(deleteUser(user._id));
     }
   };
+
   return (
     <div>
       <h1>Users</h1>

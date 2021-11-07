@@ -17,10 +17,11 @@ userRouter.get(
   })
 );
 
+//insert users from data.js
 userRouter.get(
   '/seed',
   expressAsyncHandler(async (req, res) => {
-    // await User.remove({});
+    // await User.remove({});                            //remove all of the user from db 
     const createdUsers = await User.insertMany(data.users);
     res.send({ createdUsers });
   })

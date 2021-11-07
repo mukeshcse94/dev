@@ -7,6 +7,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import { USER_UPDATE_RESET } from '../constants/userConstants';
 
+
 export default function UserEditScreen(props) {
   const userId = props.match.params.id;
   const [name, setName] = useState('');
@@ -18,11 +19,7 @@ export default function UserEditScreen(props) {
   const { loading, error, user } = userDetails;
 
   const userUpdate = useSelector((state) => state.userUpdate);
-  const {
-    loading: loadingUpdate,
-    error: errorUpdate,
-    success: successUpdate,
-  } = userUpdate;
+  const { loading: loadingUpdate, error: errorUpdate, success: successUpdate, } = userUpdate;
 
   const dispatch = useDispatch();
   useEffect(() => {
@@ -45,6 +42,7 @@ export default function UserEditScreen(props) {
     // dispatch update user
     dispatch(updateUser({ _id: userId, name, email, isSeller, isAdmin }));
   };
+
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>

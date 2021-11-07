@@ -5,13 +5,16 @@ import { summaryOrder } from '../actions/orderActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 
+
 export default function DashboardScreen() {
   const orderSummary = useSelector((state) => state.orderSummary);
   const { loading, summary, error } = orderSummary;
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(summaryOrder());
   }, [dispatch]);
+
   return (
     <div>
       <div className="row">
