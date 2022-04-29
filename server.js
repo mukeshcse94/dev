@@ -19,6 +19,7 @@ const searchRoutes = require('./routers/search');
 const faSpeaker = require('./routers/2fa_speaker_key');
 const sendMsg = require('./routers/sendMsg');
 const profiles = require('./routers/gallery');
+const stepper = require('./routers/stepperRouter');
 
 dotenv.config();
 
@@ -33,6 +34,7 @@ mongoose.connect(process.env.MONGODB_URL, {
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
+
 app.use('/api/uploads', uploadRouter);
 app.use('/api/users', userRouter);
 app.use('/api/products', productRouter);
@@ -47,6 +49,7 @@ app.use('/searchRoutes', searchRoutes);
 app.use('/2fa', faSpeaker);
 app.use('/sendMsg', sendMsg);
 app.use('/galleries', profiles);
+app.use('/stepper', stepper);
 
 app.get('/api/config/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');

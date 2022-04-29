@@ -15,7 +15,6 @@ export default class Stepper extends Component {
 
   componentDidMount() {
     const { steps, currentStepNumber } = this.props;
-
     const stepsState = steps.map((step, index) => {
       const stepObj = {};
       stepObj.description = step;
@@ -89,21 +88,20 @@ export default class Stepper extends Component {
   render() {
     const { stepColor } = this.props;
     const { steps } = this.state;
+
     const stepsJSX = steps.map((step, index) => {
       return (
         <div className="step-wrapper" key={index}>
           <div
-            className={`step-number ${
-              step.selected ? "step-number-selected" : "step-number-disabled"
-            }`}
+            className={`step-number ${step.selected ? "step-number-selected" : "step-number-disabled"
+              }`}
             style={{ background: `${step.selected ? stepColor : "none"}` }}
           >
             {step.completed ? <span>&#10003;</span> : index + 1}
           </div>
           <div
-            className={`step-description ${
-              step.highlighted && "step-description-active"
-            }`}
+            className={`step-description ${step.highlighted && "step-description-active"
+              }`}
           >
             {step.description}
           </div>

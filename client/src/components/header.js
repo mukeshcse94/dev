@@ -127,7 +127,6 @@ const Header = () => {
           <Link to="/Home">MernAuth</Link><br />
           <Link to="/dynamicGet">DynamicGet</Link><br />
           <Link to="/removeDuplicates">RemoveDuplicates</Link><br />
-          <Link to="/removeDuplicates">RemoveDuplicates</Link><br />
           <Link to="/profilesModify">Profiles</Link><br />
           <Link to="/dSelect">dependent Selects</Link><br />
         </ul>

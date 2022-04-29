@@ -1,13 +1,11 @@
 import React, { Component } from "react";
 import {
   FacebookShareButton,
-  // GooglePlusShareButton,
   TwitterShareButton,
   WhatsappShareButton,
   EmailShareButton,
   FacebookIcon,
   TwitterIcon,
-  GooglePlusIcon,
   EmailIcon,
   WhatsappIcon
 } from "react-share";
@@ -15,8 +13,8 @@ import {
 
 class ReactShareSimplified extends Component {
   render() {
-    const { url, title, facebook, googlePlus, twitter, whatsapp, email, addClass, Previewemail } = this.props;
-    let { facebookClass, twitterClass, googlePlusClass, whatsappClass, emailClass } = this.props || "shareIcon";
+    const { url, title, facebook, twitter, whatsapp, email, addClass, Previewemail } = this.props;
+    let { facebookClass, twitterClass, whatsappClass, emailClass } = this.props || "shareIcon";
 
     let iconSize = 32;
     if (this.props.iconSize !== undefined) { iconSize = this.props.iconSize }
@@ -26,10 +24,6 @@ class ReactShareSimplified extends Component {
         {facebook && (<FacebookShareButton url={url} quote={title} style={{ outline: 'none' }} className={facebookClass}>
           <FacebookIcon size={iconSize} round />
         </FacebookShareButton>)}
-
-        {/* {googlePlus && (<GooglePlusShareButton url={url} quote={title} style={{ outline: 'none' }} className={googlePlusClass}>
-          <GooglePlusIcon size={iconSize} round />
-        </GooglePlusShareButton>)} */}
 
         {twitter && (<TwitterShareButton url={url} quote={title} style={{ outline: 'none' }} className={twitterClass}>
           <TwitterIcon size={iconSize} round />

@@ -19,6 +19,7 @@ import albumReducer from "./albumReducer";
 
 import authReducer from './auth';
 import dashboardReducer from './dashboard';
+import stepper from "./stepper";
 
 
 export default combineReducers({
@@ -52,5 +53,6 @@ export default combineReducers({
   auth: authReducer,
   dash: dashboardReducer,
 
-  album: albumReducer
+  album: albumReducer,
+  stepper: stepper
 });

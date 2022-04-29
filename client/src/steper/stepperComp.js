@@ -1,13 +1,20 @@
-import "../styles/steppers.css";
-import Stepper from "./Stepper";
 import React, { Component } from "react";
+import { connect } from "react-redux";
+import "../styles/steppers.css";
+import { getStepper } from "../actions/stepper"
+import Stepper from "./Stepper";
 
-export default class StepperCompo extends Component {
+
+class StepperCompo extends Component {
   constructor() {
     super();
     this.state = {
       currentStep: 1,
     };
+  }
+
+  componentDidMount() {
+    this.props.getStepper()
   }
 
   handleClick(clickType) {
@@ -24,6 +31,7 @@ export default class StepperCompo extends Component {
 
   render() {
     const { currentStep } = this.state;
+    // console.log('stepper', this.props.stepper.steps)
 
     return (
       <>
@@ -58,3 +66,11 @@ const stepsArray = [
   "Batch Transacted",
   "Manual ASN Report",
 ];
+
+const mapStateToProps = state => ({
+  stepper: state.stepper
+});
+
+
+
+export default connect(mapStateToProps, { getStepper })(StepperCompo);
